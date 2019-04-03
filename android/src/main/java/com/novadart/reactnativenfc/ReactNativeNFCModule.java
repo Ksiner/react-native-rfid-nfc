@@ -250,10 +250,18 @@ public class ReactNativeNFCModule extends ReactContextBaseJavaModule
     }
 
     private String getSerialNumber(Tag tag){
-        byte[] id = tag.getId();
-        String serialNumber = DataUtils.bytesToHex(id);
+        if (tag == null)
+        {
+            return null;
 
-        return serialNumber;
+        } else {
+
+            byte[] id = tag.getId();
+
+            String serialNumber = DataUtils.bytesToHex(id);
+
+            return serialNumber;
+        }
     }
 
     private void processNdefMessages(String serialNumber, NdefMessage[] messages, boolean startupIntent){
